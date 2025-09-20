@@ -91,100 +91,143 @@ export default function Page() {
     <main className="min-h-screen bg-white text-gray-800">
       {/* HEADER */}
       <header className="flex justify-between items-center px-4 py-4 shadow relative">
-        {/* LEFT: Mobile menu button */}
-        <button
-          className="md:hidden p-2 text-gray-700"
-          onClick={() => setMenuOpen(!menuOpen)}
+  {/* LEFT: Mobile menu button + Language switcher */}
+  <div className="flex items-center space-x-2">
+    {/* Mobile menu button */}
+    <button
+      className="md:hidden p-2 text-gray-700"
+      onClick={() => setMenuOpen(!menuOpen)}
+    >
+      {menuOpen ? <X size={24} /> : <Menu size={24} />}
+    </button>
+
+    {/* MOBILE LANGUAGE SWITCHER */}
+    <div className="flex md:hidden">
+      {[
+        { code: "uz", path: "/" },
+        { code: "ru", path: "/ru" },
+        { code: "en", path: "/en" },
+      ].map((lang) => (
+        <Link
+          key={lang.code}
+          href={lang.path}
+          className={`px-2 py-1 rounded-md text-sm transition ${
+            pathname === lang.path
+              ? "bg-green-600 text-white font-semibold"
+              : "text-gray-600 hover:text-green-600"
+          }`}
         >
-          {menuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+          {lang.code.toUpperCase()}
+        </Link>
+      ))}
+    </div>
+  </div>
 
-        {/* CENTER: Logo */}
-        <h1 className="text-xl md:text-2xl font-bold text-green-600">
-          {dict.logo}
-        </h1>
+  {/* CENTER: Logo */}
+  <h1 className="text-xl md:text-2xl font-bold text-green-600">
+    {dict.logo}
+  </h1>
 
-        {/* RIGHT: Desktop navigation */}
-        <div className="hidden md:flex items-center space-x-6">
-          <nav className="flex space-x-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                href={link.path}
-                className={`transition ${
-                  pathname === link.path
-                    ? "text-green-600 font-semibold"
-                    : "text-gray-700 hover:text-green-600"
-                }`}
-              >
-                {link.title}
-              </Link>
-            ))}
-          </nav>
+  {/* RIGHT: Desktop navigation */}
+  <div className="hidden md:flex items-center space-x-6">
+    <nav className="flex space-x-6">
+      {navLinks.map((link) => (
+        <Link
+          key={link.path}
+          href={link.path}
+          className={`transition ${
+            pathname === link.path
+              ? "text-green-600 font-semibold"
+              : "text-gray-700 hover:text-green-600"
+          }`}
+        >
+          {link.title}
+        </Link>
+      ))}
+    </nav>
 
-          {/* Language switcher */}
-          <div className="flex">
-            {[
-              { code: "uz", path: "/" },
-              { code: "ru", path: "/ru" },
-              { code: "en", path: "/en" },
-            ].map((lang) => (
-              <Link
-                key={lang.code}
-                href={lang.path}
-                className={`px-3 py-1 rounded-md mx-1 transition text-sm ${
-                  pathname === lang.path
-                    ? "bg-white text-black shadow font-semibold"
-                    : "text-gray-600 hover:text-green-600"
-                }`}
-              >
-                {lang.code.toUpperCase()}
-              </Link>
-            ))}
-          </div>
+    {/* Language switcher (desktop) */}
+    <div className="flex">
+      {[
+        { code: "uz", path: "/" },
+        { code: "ru", path: "/ru" },
+        { code: "en", path: "/en" },
+      ].map((lang) => (
+        <Link
+          key={lang.code}
+          href={lang.path}
+          className={`px-3 py-1 rounded-md mx-1 transition text-sm ${
+            pathname === lang.path
+              ? "bg-white text-black shadow font-semibold"
+              : "text-gray-600 hover:text-green-600"
+          }`}
+        >
+          {lang.code.toUpperCase()}
+        </Link>
+      ))}
+    </div>
 
-          <button className="bg-green-600 text-white px-4 py-2 rounded-lg">
-            {dict.start}
-          </button>
-        </div>
-      </header>
+    <button className="bg-green-600 text-white px-4 py-2 rounded-lg">
+      {dict.start}
+    </button>
+  </div>
+</header>
 
-      {/* MOBILE SIDE MENU */}
-      <div
-        className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 z-50 ${
-          menuOpen ? "translate-x-0" : "-translate-x-full"
+{/* MOBILE SIDE MENU */}
+<div
+  className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 z-50 ${
+    menuOpen ? "translate-x-0" : "-translate-x-full"
+  }`}
+>
+  <div className="flex justify-between items-center px-4 py-4 border-b">
+    <h2 className="text-lg font-bold text-green-600">{dict.menu}</h2>
+    <button
+      onClick={() => setMenuOpen(false)}
+      className="text-gray-700 p-1"
+    >
+      <X size={22} />
+    </button>
+  </div>
+  <nav className="flex flex-col space-y-4 p-6">
+    {navLinks.map((link) => (
+      <Link
+        key={link.path}
+        href={link.path}
+        className={`transition ${
+          pathname === link.path
+            ? "text-green-600 font-semibold"
+            : "text-gray-700 hover:text-green-600"
         }`}
+        onClick={() => setMenuOpen(false)}
       >
-        <div className="flex justify-between items-center px-4 py-4 border-b">
-          <h2 className="text-lg font-bold text-green-600">{dict.menu}</h2>
-          <button
-            onClick={() => setMenuOpen(false)}
-            className="text-gray-700 p-1"
-          >
-            <X size={22} />
-          </button>
-        </div>
-        <nav className="flex flex-col space-y-4 p-6">
-          {navLinks.map((link) => (
-            <Link
-              key={link.path}
-              href={link.path}
-              className={`transition ${
-                pathname === link.path
-                  ? "text-green-600 font-semibold"
-                  : "text-gray-700 hover:text-green-600"
-              }`}
-              onClick={() => setMenuOpen(false)}
-            >
-              {link.title}
-            </Link>
-          ))}
+        {link.title}
+      </Link>
+    ))}
 
-          <button className="mt-4 bg-green-600 text-white px-4 py-2 rounded-lg">
-            {dict.start}
-          </button>
-        </nav>
-      </div>
+    {/* Language switcher (mobile menu ichida) */}
+    <div className="flex space-x-2 mt-4">
+      {["uz", "ru", "en"].map((code) => (
+        <Link
+          key={code}
+          href={code === "uz" ? "/" : `/${code}`}
+          className={`px-3 py-1 rounded-md text-sm transition ${
+            pathname === (code === "uz" ? "/" : `/${code}`)
+              ? "bg-green-600 text-white font-semibold"
+              : "text-gray-600 hover:text-green-600"
+          }`}
+          onClick={() => setMenuOpen(false)}
+        >
+          {code.toUpperCase()}
+        </Link>
+      ))}
+    </div>
+
+    <button className="mt-4 bg-green-600 text-white px-4 py-2 rounded-lg">
+      {dict.start}
+    </button>
+  </nav>
+</div>
+
 
       {/* HERO */}
       <section className="grid md:grid-cols-2 gap-8 px-8 py-16 items-center">
