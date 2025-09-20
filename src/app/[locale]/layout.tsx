@@ -1,23 +1,26 @@
-import { ReactNode } from "react";
-import { notFound } from "next/navigation";
+"use client";
 
+import { ReactNode } from "react";
+import { useParams } from "next/navigation";
 import en from "@/messages/en.json";
 import uz from "@/messages/uz.json";
 import ru from "@/messages/ru.json";
 
 type Locale = "en" | "uz" | "ru";
-
 const dictionaries: Record<Locale, any> = { en, uz, ru };
 
-export default async function LocaleLayout({
-  children,
-  params,
-}: {
-  children: ReactNode;
-  params: { locale: string }; // string qoldiring, keyin tekshirish
-}) {
-  // params.locale ni tekshirib, default uz
-  const locale = params.locale && params.locale in dictionaries ? (params.locale as Locale) : "uz";
+export default function LocaleLayout({ children }: { children: ReactNode }) {
+  const params = useParams();
+
+  // params.locale string | string[] bo'lishi mumkin
+  let localeStr: string;
+  if (Array.isArray(params?.locale)) {
+    localeStr = params.locale[0]; // agar array bo'lsa birinchi element
+  } else {
+    localeStr = params?.locale || "uz"; // undefined bo'lsa default "uz"
+  }
+
+  const locale: Locale = localeStr in dictionaries ? (localeStr as Locale) : "uz";
   const dict = dictionaries[locale];
 
   return (
