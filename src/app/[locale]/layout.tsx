@@ -6,8 +6,17 @@ import en from "@/messages/en.json";
 import uz from "@/messages/uz.json";
 import ru from "@/messages/ru.json";
 
+// Locale tiplari
 type Locale = "en" | "uz" | "ru";
-const dictionaries: Record<Locale, any> = { en, uz, ru };
+
+// JSON fayllarining tuzilishi
+interface Dictionary {
+  hello: string;
+  help: string;
+}
+
+// dictionaries tipini aniqlash
+const dictionaries: Record<Locale, Dictionary> = { en, uz, ru };
 
 export default function LocaleLayout({ children }: { children: ReactNode }) {
   const params = useParams();
@@ -20,6 +29,7 @@ export default function LocaleLayout({ children }: { children: ReactNode }) {
     localeStr = params?.locale || "uz"; // undefined bo'lsa default "uz"
   }
 
+  // locale ni tekshirish
   const locale: Locale = localeStr in dictionaries ? (localeStr as Locale) : "uz";
   const dict = dictionaries[locale];
 
