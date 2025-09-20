@@ -12,7 +12,7 @@ type Locale = "en" | "uz" | "ru";
 interface Dictionary {
   hello: string;
   help: string;
-}
+} 
 
 // dictionaries tipini aniqlash
 const dictionaries: Record<Locale, Dictionary> = { en, uz, ru };
