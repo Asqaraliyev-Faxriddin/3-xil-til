@@ -5,12 +5,22 @@ import en from "../../messages/en.json";
 import uz from "../../messages/uz.json";
 import ru from "../../messages/ru.json";
 
+// Locale tiplari
 type Locale = "en" | "uz" | "ru";
-const dictionaries: Record<Locale, any> = { en, uz, ru };
+
+// JSON fayllarining tuzilishi
+interface Dictionary {
+  hello: string;
+  help: string;
+}
+
+// dictionaries tipini aniqlash
+const dictionaries: Record<Locale, Dictionary> = { en, uz, ru };
 
 export default function Page() {
   const params = useParams();
 
+  // params.locale string | string[] bo'lishi mumkin
   let localeStr: string;
   if (Array.isArray(params?.locale)) {
     localeStr = params.locale[0];
