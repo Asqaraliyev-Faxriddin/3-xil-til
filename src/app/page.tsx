@@ -10,6 +10,14 @@ export default function Home() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
 
+
+  const navLinks = [
+    { title: "Asosiy", path: "/" },
+    { title: "Xizmatlar", path: "/xizmatlar" },
+    { title: "Narxlar", path: "/narxlar" },
+    { title: "Bog‘lanish", path: "/boglanish" },
+  ];
+
   return (
     <main className="min-h-screen bg-white text-gray-800">
       {/* HEADER */}
@@ -30,11 +38,22 @@ export default function Home() {
         {/* RIGHT: Desktop navigation */}
         <div className="hidden md:flex items-center space-x-6">
           <nav className="flex space-x-6">
-            <a href="#" className="hover:text-green-600">Asosiy</a>
-            <a href="#" className="hover:text-green-600">Xizmatlar</a>
-            <a href="#" className="hover:text-green-600">Narxlar</a>
-            <a href="#" className="hover:text-green-600">Bog‘lanish</a>
+            {navLinks.map((link) => (
+              <Link
+                key={link.path}
+                href={link.path}
+                className={`transition ${
+                  pathname === link.path
+                    ? "text-green-600 font-semibold"
+                    : "text-gray-700 hover:text-green-600"
+                }`}
+              >
+                {link.title}
+              </Link>
+            ))}
           </nav>
+
+          {/* Language switcher */}
           <div className="flex">
             {[
               { code: "uz", path: "/" },
@@ -54,6 +73,7 @@ export default function Home() {
               </Link>
             ))}
           </div>
+
           <button className="bg-green-600 text-white px-4 py-2 rounded-lg">
             Boshlash
           </button>
@@ -97,10 +117,21 @@ export default function Home() {
           </button>
         </div>
         <nav className="flex flex-col space-y-4 p-6">
-          <a href="#" className="hover:text-green-600">Asosiy</a>
-          <a href="#" className="hover:text-green-600">Xizmatlar</a>
-          <a href="#" className="hover:text-green-600">Narxlar</a>
-          <a href="#" className="hover:text-green-600">Bog‘lanish</a>
+          {navLinks.map((link) => (
+            <Link
+              key={link.path}
+              href={link.path}
+              className={`transition ${
+                pathname === link.path
+                  ? "text-green-600 font-semibold"
+                  : "text-gray-700 hover:text-green-600"
+              }`}
+              onClick={() => setMenuOpen(false)}
+            >
+              {link.title}
+            </Link>
+          ))}
+
           <button className="mt-4 bg-green-600 text-white px-4 py-2 rounded-lg">
             Boshlash
           </button>
