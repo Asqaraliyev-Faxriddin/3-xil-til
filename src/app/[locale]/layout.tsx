@@ -20,7 +20,7 @@ const dictionaries: Record<Locale, Dictionary> = { en, uz, ru };
 
 export default function LocaleLayout({ children }: { children: ReactNode }) {
   const params = useParams();
-
+  
   // params.locale string | string[] bo'lishi mumkin
   let localeStr: string;
   if (Array.isArray(params?.locale)) {
