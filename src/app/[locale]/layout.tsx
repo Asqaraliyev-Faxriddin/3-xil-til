@@ -9,16 +9,19 @@ type Locale = "en" | "uz" | "ru";
 
 const dictionaries: Record<Locale, any> = { en, uz, ru };
 
-export default function LocaleLayout({children,params,}: {children: ReactNode;params: { locale: Locale }}) {
-    
-  if (!(params.locale in dictionaries)) {
-    notFound();
-  }
-
-  const dict = dictionaries[params.locale];
+export default async function LocaleLayout({
+  children,
+  params,
+}: {
+  children: ReactNode;
+  params: { locale: string }; // string qoldiring, keyin tekshirish
+}) {
+  // params.locale ni tekshirib, default uz
+  const locale = params.locale && params.locale in dictionaries ? (params.locale as Locale) : "uz";
+  const dict = dictionaries[locale];
 
   return (
-    <div data-locale={params.locale}>
+    <div data-locale={locale}>
       {children}
       <footer style={{ marginTop: 20, opacity: 0.6 }}>
         {dict.hello} | {dict.help}
