@@ -1,21 +1,111 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Menu, X } from "lucide-react";
 
 export default function Home() {
+  const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <main className="min-h-screen bg-white text-gray-800">
       {/* HEADER */}
-      <header className="flex justify-between items-center px-8 py-6 shadow">
-        <h1 className="text-2xl font-bold text-green-600">RaqamliBank</h1>
-        <nav className="space-x-6 hidden md:flex">
+      <header className="flex justify-between items-center px-4 py-4 shadow relative">
+        {/* LEFT: Mobile menu button */}
+        <button
+          className="md:hidden p-2 text-gray-700"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+
+        {/* CENTER: Logo */}
+        <h1 className="text-xl md:text-2xl font-bold text-green-600">
+          RaqamliBank
+        </h1>
+
+        {/* RIGHT: Desktop navigation */}
+        <div className="hidden md:flex items-center space-x-6">
+          <nav className="flex space-x-6">
+            <a href="#" className="hover:text-green-600">Asosiy</a>
+            <a href="#" className="hover:text-green-600">Xizmatlar</a>
+            <a href="#" className="hover:text-green-600">Narxlar</a>
+            <a href="#" className="hover:text-green-600">Bog‘lanish</a>
+          </nav>
+          <div className="flex">
+            {[
+              { code: "uz", path: "/" },
+              { code: "ru", path: "/ru" },
+              { code: "en", path: "/en" },
+            ].map((lang) => (
+              <Link
+                key={lang.code}
+                href={lang.path}
+                className={`px-3 py-1 rounded-md mx-1 transition text-sm ${
+                  pathname === lang.path
+                    ? "bg-white text-black shadow font-semibold"
+                    : "text-gray-600 hover:text-green-600"
+                }`}
+              >
+                {lang.code.toUpperCase()}
+              </Link>
+            ))}
+          </div>
+          <button className="bg-green-600 text-white px-4 py-2 rounded-lg">
+            Boshlash
+          </button>
+        </div>
+
+        {/* RIGHT: Mobile language switcher */}
+        <div className="flex md:hidden items-center space-x-1">
+          {[
+            { code: "uz", path: "/" },
+            { code: "ru", path: "/ru" },
+            { code: "en", path: "/en" },
+          ].map((lang) => (
+            <Link
+              key={lang.code}
+              href={lang.path}
+              className={`px-2 py-1 rounded-md transition text-xs ${
+                pathname === lang.path
+                  ? "bg-green-600 text-white font-semibold"
+                  : "text-gray-600 hover:text-green-600"
+              }`}
+            >
+              {lang.code.toUpperCase()}
+            </Link>
+          ))}
+        </div>
+      </header>
+
+      {/* MOBILE SIDE MENU */}
+      <div
+        className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 z-50 ${
+          menuOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <div className="flex justify-between items-center px-4 py-4 border-b">
+          <h2 className="text-lg font-bold text-green-600">Menyu</h2>
+          <button
+            onClick={() => setMenuOpen(false)}
+            className="text-gray-700 p-1"
+          >
+            <X size={22} />
+          </button>
+        </div>
+        <nav className="flex flex-col space-y-4 p-6">
           <a href="#" className="hover:text-green-600">Asosiy</a>
           <a href="#" className="hover:text-green-600">Xizmatlar</a>
           <a href="#" className="hover:text-green-600">Narxlar</a>
           <a href="#" className="hover:text-green-600">Bog‘lanish</a>
+          <button className="mt-4 bg-green-600 text-white px-4 py-2 rounded-lg">
+            Boshlash
+          </button>
         </nav>
-        <button className="bg-green-600 text-white px-4 py-2 rounded-lg ml-4">
-          Boshlash
-        </button>
-      </header>
+      </div>
 
       {/* HERO */}
       <section className="grid md:grid-cols-2 gap-8 px-8 py-16 items-center">
@@ -38,6 +128,7 @@ export default function Home() {
             width={400}
             height={400}
             className="rounded-lg"
+            priority
           />
         </div>
       </section>
@@ -67,10 +158,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* BRIEF & ASSETS & IDEAS */}
+      {/* BRIEF & ASSETS */}
       <section className="px-8 py-16 grid md:grid-cols-2 gap-12">
-        {/* Brief */}
-        <div className="bg-white shadow rounded-lg p-6 border">
+        <div className="bg-white shadow rounded-lg p-6">
           <h3 className="text-xl font-bold mb-4">📋 Qisqa ma’lumot</h3>
           <p className="text-gray-700 mb-2">
             Sizning vazifangiz — ushbu landing sahifani yaratish va dizaynga imkon qadar yaqinlashtirish.
@@ -82,8 +172,7 @@ export default function Home() {
           </ul>
         </div>
 
-        {/* Assets */}
-        <div className="bg-white shadow rounded-lg p-6 border">
+        <div className="bg-white shadow rounded-lg p-6">
           <h3 className="text-xl font-bold mb-4">📦 Berilgan resurslar</h3>
           <ul className="list-disc pl-6 text-gray-600 space-y-2">
             <li>JPEG dizayn fayllari</li>
@@ -97,7 +186,7 @@ export default function Home() {
 
       {/* IDEAS */}
       <section className="px-8 py-16">
-        <div className="bg-white shadow rounded-lg p-6 border">
+        <div className="bg-white shadow rounded-lg p-6">
           <h3 className="text-xl font-bold mb-4">💡 O‘zingizni sinab ko‘ring</h3>
           <ol className="list-decimal pl-6 text-gray-600 space-y-2">
             <li>Sass yoki Less yordamida stillarni yozish</li>
@@ -120,9 +209,9 @@ export default function Home() {
             "Portfolio uchun foydalansam bo‘ladimi?",
             "Yangi vazifalar qanchalik tez qo‘shiladi?",
             "Desktop va mobil dizayn o‘rtasidagi farq nima?",
-            "Bepul yoki tijoriy loyihalarda foydalanish mumkinmi?"
+            "Bepul yoki tijoriy loyihalarda foydalanish mumkinmi?",
           ].map((savol, i) => (
-            <details key={i} className="bg-white p-4 border rounded-lg">
+            <details key={i} className="bg-white p-4 rounded-lg shadow">
               <summary className="font-semibold cursor-pointer">{savol}</summary>
               <p className="mt-2 text-gray-600">Javob tez orada qo‘shiladi...</p>
             </details>
@@ -131,8 +220,10 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer className="px-8 py-6 bg-gray-800 text-white text-center">
-        <p>© 2025 RaqamliBank. Barcha huquqlar himoyalangan.</p>
+      <footer className="px-8 py-6 bg-white text-center border-t">
+        <p className="font-medium text-gray-700">
+          © 2025 <span className="text-green-600">RaqamliBank</span>. Barcha huquqlar himoyalangan.
+        </p>
       </footer>
     </main>
   );
