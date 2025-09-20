@@ -1,5 +1,70 @@
 {
-    "hello": "Salom, xush kelibsiz!",
-    "help": "Biz sizga qanday yordam bera olamiz?"
-  }
-  
+  "logo": "RaqamliBank",
+  "nav": {
+    "home": "Asosiy",
+    "services": "Xizmatlar",
+    "pricing": "Narxlar",
+    "contact": "Bog‘lanish"
+  },
+  "menu": "Menyu",
+  "start": "Boshlash",
+  "hero": {
+    "title": "Keyingi avlod raqamli bank",
+    "desc": "Moliyaviy hayotingizni boshqarish uchun zamonaviy va oson platforma. Onlayn banking, byudjetlash, tezkor o‘tkazmalar va API imkoniyatlari.",
+    "cta": "Hozir boshlang"
+  },
+  "features": {
+    "title": "Nega RaqamliBank?",
+    "onlineBanking": "Onlayn Banking",
+    "onlineBankingDesc": "Dunyoning istalgan joyidan moliyangizni boshqaring.",
+    "budgeting": "Oddiy Byudjetlash",
+    "budgetingDesc": "Xarajatlaringizni kuzatib boring va rejalashtiring.",
+    "transfer": "Tezkor O‘tkazmalar",
+    "transferDesc": "Pulni bir necha soniyada o‘tkazing.",
+    "api": "Ochiq API",
+    "apiDesc": "Bizning API orqali xizmatlaringizni kengaytiring."
+  },
+  "brief": {
+    "title": "📋 Qisqa ma’lumot",
+    "desc": "Sizning vazifangiz — ushbu landing sahifani yaratish va dizaynga imkon qadar yaqinlashtirish.",
+    "points": [
+      "Foydalanuvchi ekraniga mos interfeys tuzish",
+      "Interaktiv elementlarga e’tibor qaratish",
+      "README faylidan foydalanish"
+    ]
+  },
+  "resources": {
+    "title": "📦 Berilgan resurslar",
+    "items": [
+      "JPEG dizayn fayllari",
+      "Ranglar, shriftlar uchun style guide",
+      "Optimallashtirilgan rasmlar",
+      "README fayl",
+      "HTML fayl (tayyor kontent bilan)"
+    ]
+  },
+  "ideas": {
+    "title": "💡 O‘zingizni sinab ko‘ring",
+    "points": [
+      "Sass yoki Less yordamida stillarni yozish",
+      "Dizaynga maksimal yaqinlashtirish",
+      "Loyihani bajarish vaqtini taxmin qilish"
+    ]
+  },
+  "faq": {
+    "title": "❓ Tez-tez so‘raladigan savollar",
+    "questions": [
+      "Agar qiynalsam, yordamni qayerdan olsam bo‘ladi?",
+      "Qanday qilib o‘z yechimimni topshiraman?",
+      "Rasmiy yechimni ko‘rishim mumkinmi?",
+      "Topshirganimda kodga sharh olamanmi?",
+      "Bu loyihalarda framework ishlatish mumkinmi?",
+      "Portfolio uchun foydalansam bo‘ladimi?",
+      "Yangi vazifalar qanchalik tez qo‘shiladi?",
+      "Desktop va mobil dizayn o‘rtasidagi farq nima?",
+      "Bepul yoki tijoriy loyihalarda foydalanish mumkinmi?"
+    ],
+    "answer": "Javob tez orada qo‘shiladi..."
+  },
+  "footer": "© 2025 RaqamliBank. Barcha huquqlar himoyalangan."
+}

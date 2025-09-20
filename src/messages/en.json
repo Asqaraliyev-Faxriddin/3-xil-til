@@ -1,5 +1,70 @@
 {
-    "hello": "Hello, welcome!",
-    "help": "How can we help you?"
-  }
-  
+  "logo": "DigitalBank",
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "pricing": "Pricing",
+    "contact": "Contact"
+  },
+  "menu": "Menu",
+  "start": "Get Started",
+  "hero": {
+    "title": "Next generation digital bank",
+    "desc": "A modern and easy-to-use platform to manage your financial life. Online banking, budgeting, instant transfers and API capabilities.",
+    "cta": "Start Now"
+  },
+  "features": {
+    "title": "Why DigitalBank?",
+    "onlineBanking": "Online Banking",
+    "onlineBankingDesc": "Manage your finances from anywhere in the world.",
+    "budgeting": "Simple Budgeting",
+    "budgetingDesc": "Track and plan your expenses easily.",
+    "transfer": "Instant Transfers",
+    "transferDesc": "Send money in just a few seconds.",
+    "api": "Open API",
+    "apiDesc": "Extend your services using our API."
+  },
+  "brief": {
+    "title": "📋 Quick info",
+    "desc": "Your task is to build this landing page and make it as close to the design as possible.",
+    "points": [
+      "Responsive interface for all devices",
+      "Focus on interactive elements",
+      "Use README file as a guide"
+    ]
+  },
+  "resources": {
+    "title": "📦 Provided resources",
+    "items": [
+      "JPEG design files",
+      "Style guide for colors and fonts",
+      "Optimized images",
+      "README file",
+      "HTML file (with ready content)"
+    ]
+  },
+  "ideas": {
+    "title": "💡 Try it yourself",
+    "points": [
+      "Write styles using Sass or Less",
+      "Make the design as close as possible",
+      "Estimate the time required to complete"
+    ]
+  },
+  "faq": {
+    "title": "❓ Frequently Asked Questions",
+    "questions": [
+      "If I get stuck, where can I get help?",
+      "How do I submit my solution?",
+      "Can I see the official solution?",
+      "Will I get code feedback when I submit?",
+      "Can I use frameworks in these projects?",
+      "Can I use it for my portfolio?",
+      "How often are new tasks added?",
+      "What’s the difference between desktop and mobile designs?",
+      "Can I use it in free or commercial projects?"
+    ],
+    "answer": "Answer will be added soon..."
+  },
+  "footer": "© 2025 DigitalBank. All rights reserved."
+}
