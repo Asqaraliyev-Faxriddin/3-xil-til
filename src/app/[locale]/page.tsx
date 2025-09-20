@@ -288,7 +288,7 @@ export default function Page() {
               <p className="mt-2 text-gray-600">{dict.faq.answer}</p>
             </details>
           ))}
-        </div>
+        </div>  
       </section>
 
       {/* FOOTER */}
